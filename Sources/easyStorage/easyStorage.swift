@@ -14,13 +14,15 @@ open class StorageViewModel: ObservableObject{
         }
     }
     
-    var saveEvent = Event()
+    public init() {}
     
-    func save(){
+    private var saveEvent = Event()
+    
+    public func save(){
         saveEvent.invoke()
     }
 
-    func load<T, ViewModel>(file: String, data: ReferenceWritableKeyPath<ViewModel, [T]>) where T: Codable, T == Array<T>.ArrayLiteralElement, ViewModel: StorageViewModel{
+    public func load<T, ViewModel>(file: String, data: ReferenceWritableKeyPath<ViewModel, [T]>) where T: Codable, T == Array<T>.ArrayLiteralElement, ViewModel: StorageViewModel{
         
         DocumentHelper.load(document: file, completion: { (result: (Result<[T], Error>)) in
             switch(result){
