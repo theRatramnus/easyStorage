@@ -2,7 +2,7 @@ import SwiftUI
 import Combine
 
 
-public class StorageViewModel: ObservableObject{
+open class StorageViewModel: ObservableObject{
     
     class Event{
         var methods: [() -> Void] = []
