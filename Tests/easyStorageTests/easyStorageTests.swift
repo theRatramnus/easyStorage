@@ -3,9 +3,17 @@ import XCTest
 
 final class easyStorageTests: XCTestCase {
     func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(easyStorage().text, "Hello, World!")
+        class Store: StorageViewModel{
+            @Published var names: [String] = []
+            override init() {
+                super.init()
+                load(file: "names", data: \Store.names)
+                names = ["me", "you", "him"]
+                save()
+                load(file: "names", data: \Store.names)
+                print(names)
+            }
+        }
+        XCTAssertEqual(Store().names, ["me", "you", "him"])
     }
 }
