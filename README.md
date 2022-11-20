@@ -5,14 +5,19 @@
 
 A simple, easy to use wrapper for ``ObservableObject`` to allow for persistent data storage. 
 
+
 ## Usage
 You just use the class ``StorageViewModel`` instead of  ``ObservableObject``. In ``StorageViewModel`` there are  two notable methods:  ``load(file:, data:)`` and ``save()``.
+
+The ``file:`` you give the ``load``-method is just an identifier for the property you want to store.
 
 In ``load`` you load the data from the file you specify and  save it to a key path as well as register this given key path to the ``save``-method. 
 
 I would recommend you invoke the ``load``-method in your view models initializer and the ``save``-method in an ``onDisappear``-closure in ``ContentView``.
 
 ### Example
+
+
 
 #### ViewModel
 ```swift
@@ -23,7 +28,7 @@ class ViewModel: StorageViewModel{
 	override init() {
 	super.init()
 	
-	load(file: "names", data: \Store.names)
+	load(file: "names", data: \ViewModel.names)
 	}
 }
 ```
@@ -80,5 +85,4 @@ easyStorage is available under the MIT License.
 
 
 > Written with [StackEdit](https://stackedit.io/).
-
 
